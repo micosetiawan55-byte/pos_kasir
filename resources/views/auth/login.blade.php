@@ -12,7 +12,7 @@
     
     <style>
         body {
-            background: linear-gradient(135deg, #4361ee 0%, #3f37c9 100%);
+            background: linear-gradient(135deg, #465dc7ff 0%, #2a3a7fff 100%);
             height: 100vh;
             display: flex;
             align-items: center;
@@ -102,7 +102,7 @@
                             <i class="bi bi-lock"></i>
                         </span>
                         <input type="password" class="form-control" id="password" 
-                               placeholder="••••••••" required>
+                               placeholder="masukan password" required>
                         <button class="btn btn-outline-secondary" type="button" 
                                 id="togglePassword">
                             <i class="bi bi-eye"></i>
