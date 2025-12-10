@@ -119,7 +119,7 @@
                             <i class="bi bi-key"></i>
                         </span>
                         <input type="password" class="form-control" id="adminPassword" 
-                               placeholder="••••••••" value="admin123" required>
+                               placeholder="masukan password" value="admin123" required>
                         <button class="btn btn-outline-secondary" type="button" 
                                 id="toggleAdminPassword">
                             <i class="bi bi-eye"></i>
@@ -128,7 +128,7 @@
                 </div>
 
                 <!-- Security Code (Optional) -->
-                <div class="mb-4">
+                <!-- <div class="mb-4">
                     <label for="securityCode" class="form-label">Kode Keamanan</label>
                     <div class="input-group">
                         <span class="input-group-text">
@@ -137,10 +137,10 @@
                         <input type="text" class="form-control" id="securityCode" 
                                placeholder="Opsional">
                     </div>
-                </div>
+                </div> -->
 
                 <!-- Remember & Forgot -->
-                <div class="mb-4 d-flex justify-content-between">
+                <!-- <div class="mb-4 d-flex justify-content-between">
                     <div class="form-check">
                         <input type="checkbox" class="form-check-input" id="rememberAdmin">
                         <label class="form-check-label" for="rememberAdmin">
@@ -150,7 +150,7 @@
                     <a href="#" class="text-decoration-none">
                         <small>Lupa password?</small>
                     </a>
-                </div>
+                </div> -->
 
                 <!-- Login Button -->
                 <button type="submit" class="btn btn-admin-login mb-3">
@@ -158,14 +158,14 @@
                 </button>
 
                 <!-- Back to POS -->
-                <div class="text-center mt-3">
+                <!-- <div class="text-center mt-3">
                     <a href="/pos" class="text-decoration-none">
                         <i class="bi bi-arrow-left me-1"></i>Kembali ke Mode Kasir
                     </a>
                 </div>
             </form>
         </div>
-    </div>
+    </div> -->
 
     <!-- Bootstrap JS -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>

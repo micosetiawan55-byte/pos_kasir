@@ -111,12 +111,12 @@
                 </div>
 
                 <!-- Remember Me -->
-                <div class="mb-4 form-check">
+                <!-- <div class="mb-4 form-check">
                     <input type="checkbox" class="form-check-input" id="remember">
                     <label class="form-check-label" for="remember">
                         Ingat saya
                     </label>
-                </div>
+                </div> -->
 
                 <!-- Login Button -->
                 <button type="submit" class="btn btn-login mb-3">
@@ -126,9 +126,9 @@
                 <!-- Copyright -->
                 <div class="text-center mt-4">
                     <small class="text-muted">
-                        © 2024 POS Kasir v1.0<br>
-                        <a href="#" class="text-decoration-none">Bantuan</a> • 
-                        <a href="#" class="text-decoration-none">Lupa Password</a>
+                        © 2025 POS Kasir <br>
+                        <!-- <a href="#" class="text-decoration-none">Bantuan</a> • 
+                        <a href="#" class="text-decoration-none">Lupa Password</a> -->
                     </small>
                 </div>
             </form>

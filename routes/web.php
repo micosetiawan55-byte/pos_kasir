@@ -5,13 +5,23 @@ use Illuminate\Support\Facades\Route;
 // ========== PUBLIC ROUTES ==========
 
 // Landing/Login Page
-Route::get('/', function () {
-    return view('auth.login');
-});
+// Route::get('/', function () {
+//     return view('auth.login');
+// });
 
 // Login Route
 Route::get('/login', function () {
     return view('auth.login');
+});
+
+// Dashboard Pilihan Login
+Route::get('/', function () {
+    return view('auth.dashboard'); // Dashboard pilihan login
+});
+
+// Login Admin
+Route::get('/admin-login', function () {
+    return view('admin.login');
 });
 
 // Logout Route (Show confirmation page)
@@ -29,11 +39,6 @@ Route::get('/logout-action', function () {
     
     // For demo, just redirect to login
     return redirect('/login')->with('success', 'Anda telah logout dari sistem.');
-});
-
-// Admin Login
-Route::get('/admin-login', function () {
-    return view('admin.login');
 });
 
 // ========== APPLICATION ROUTES ==========
@@ -82,7 +87,12 @@ Route::prefix('admin')->group(function () {
     Route::get('/reports', function () {
         return view('admin.reports');
     });
-});
-Route::get('/admin/transactions', function () {
-    return view('admin.transactions');  // Pastikan file ada di resources/views/admin/transactions.blade.php
+
+    Route::get('/transactions', function () {
+        return view('admin.transactions');
+    });
+
+    Route::get('/transaction-detail/{id}', function ($id) {
+        return view('admin.transaction-detail', ['id' => $id]);
+    });
 });
