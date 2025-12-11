@@ -108,13 +108,15 @@
                                     </div>
                                 </td>
                             </tr>
+                            
                             @endforeach
                             
                         </tbody>
                     </table>
                 </div>
-
-                <!-- Pagination -->
+                {{ $products->links() }}
+                
+                {{-- <!-- Pagination -->
                 <nav aria-label="Page navigation">
                     <ul class="pagination justify-content-center">
                         <li class="page-item disabled">
@@ -127,7 +129,7 @@
                             <a class="page-link" href="#">Next</a>
                         </li>
                     </ul>
-                </nav>
+                </nav> --}}
             </div>
         </div>
     </div>

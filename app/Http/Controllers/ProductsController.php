@@ -15,9 +15,10 @@ class ProductsController extends Controller
     {
         $products = Products::all();
         $category = Category::all();
+        $max_data = 2;
 
         // eager load relasi 'category' supaya tidak terjadi query berulang (N+1)
-        $products = Products::with('category')->get();
+        $products = Products::with('category')->paginate($max_data);
 
         // jika view form create ada di halaman ini (modal), kirim juga kategori
         return view('products.product', compact('products', 'category'));
