@@ -101,7 +101,7 @@
             <ul class="navbar-nav me-auto">
                 <li class="nav-item me-4">  <!-- Jarak kanan 4 unit -->
                     <a class="nav-link" href="/pos">
-                        <i class="bi bi-cash-register me-2"></i>Kasir
+                        <i class="bi bi-person me-2"></i>Kasir
                     </a>
                 </li>
                 <li class="nav-item me-4">  <!-- Jarak kanan 4 unit -->
