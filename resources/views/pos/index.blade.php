@@ -219,25 +219,27 @@
                 {{-- TOTAL (STICKY BOTTOM) --}}
                 @if($total_item > 0)
                 <div class="cart-total">
-                    <div class="d-flex justify-content-between align-items-center mb-2">
-                        <span class="text-muted">Total Item</span>
-                        <strong class="fs-6">{{ $total_item }}</strong>
+                    <div class="d-flex justify-content-between align-items-center mb-3 pb-2">
+                        <span class="text-muted fs-6">Total Item</span>
+                        <strong class="fs-6 fw-bold">{{ $total_item }}</strong>
                     </div>
 
-                    <div class="d-flex justify-content-between align-items-center mb-3">
-                        <span class="text-muted">Total Belanja</span>
-                        <strong class="text-primary fs-4 fw-bold">
+                    <div class="d-flex justify-content-between align-items-center mb-4 pb-3 border-bottom">
+                        <span class="text-muted fs-6">Total Belanja</span>
+                        <strong class="text-primary fs-3 fw-bold">
                             Rp {{ number_format($total, 0, ',', '.') }}
                         </strong>
                     </div>
 
-                    <div class="d-grid gap-2">
+                    <!-- BUTTONS WITH MORE SPACING -->
+                    <div class="d-grid gap-3 mb-3"> <!-- Changed from gap-2 to gap-3 -->
                         <a href="{{ route('payment.index') }}" class="btn btn-primary btn-lg py-3 fw-semibold shadow-sm">
                             <i class="bi bi-credit-card-fill me-2"></i>Proses Pembayaran
                         </a>
-                        <form action="{{ route('pos.clear') }}" method="POST">
+                        <!-- Form untuk Batalkan Transaksi dengan width 100% -->
+                        <form action="{{ route('pos.clear') }}" method="POST" class="w-100">
                             @csrf
-                            <button class="btn btn-outline-danger btn-lg py-3 fw-semibold">
+                            <button type="submit" class="btn btn-outline-danger btn-lg py-3 fw-semibold w-100">
                                 <i class="bi bi-x-circle me-2"></i>Batalkan Transaksi
                             </button>
                         </form>
@@ -350,6 +352,66 @@
     background: linear-gradient(135deg, #00b09b 0%, #96c93d 100%);
 }
 
+/* TOMBOL DENGAN SPACING LEBIH BESAR DAN LEBAR SAMA */
+.btn-lg {
+    border-radius: 12px !important;
+    font-weight: 600 !important;
+    transition: all 0.3s ease !important;
+    width: 100% !important; /* Pastikan semua tombol btn-lg lebar 100% */
+}
+
+/* Tombol Proses Pembayaran */
+.btn-primary.btn-lg {
+    border: 2px solid var(--bs-primary) !important;
+    background: linear-gradient(135deg, var(--bs-primary) 0%, #5a67d8 100%) !important;
+    box-shadow: 0 4px 12px rgba(var(--bs-primary-rgb), 0.2) !important;
+}
+
+/* Tombol Batalkan Transaksi */
+.btn-outline-danger.btn-lg {
+    border: 2px solid var(--bs-danger) !important;
+    color: var(--bs-danger) !important;
+    background-color: transparent !important;
+}
+
+/* Hover Effects */
+.btn-primary.btn-lg:hover {
+    transform: translateY(-3px) !important;
+    box-shadow: 0 6px 20px rgba(var(--bs-primary-rgb), 0.3) !important;
+    background: linear-gradient(135deg, #4f46e5 0%, #4338ca 100%) !important;
+}
+
+.btn-outline-danger.btn-lg:hover {
+    transform: translateY(-3px) !important;
+    box-shadow: 0 6px 20px rgba(var(--bs-danger-rgb), 0.2) !important;
+    background: linear-gradient(135deg, var(--bs-danger) 0%, #c53030 100%) !important;
+    color: white !important;
+    border-color: var(--bs-danger) !important;
+}
+
+/* Pastikan tombol dalam form juga lebar 100% */
+.cart-total form {
+    width: 100% !important;
+}
+
+.cart-total form button {
+    width: 100% !important;
+}
+
+/* Form styling untuk konsistensi */
+.cart-total form {
+    margin: 0 !important;
+}
+
+/* TAMBAHAN SPACING UNTUK TOMBOL */
+.d-grid.gap-3 > * {
+    margin-bottom: 0.25rem !important;
+}
+
+.cart-total .d-grid.gap-3 {
+    margin-top: 1rem !important;
+}
+
 /* RESPONSIVE */
 @media (max-width: 768px) {
     .pos-cart {
@@ -360,6 +422,15 @@
     .product-card {
         margin-bottom: 0.5rem;
     }
+    
+    .cart-total {
+        padding: 1rem;
+    }
+    
+    .btn-lg {
+        padding: 0.875rem 1rem !important;
+        font-size: 1rem !important;
+    }
 }
 
 @media (max-width: 576px) {
@@ -369,7 +440,11 @@
     
     .cart-total .btn-lg {
         padding: 0.75rem !important;
-        font-size: 0.9rem;
+        font-size: 0.95rem !important;
+    }
+    
+    .cart-total {
+        padding: 1rem !important;
     }
 }
 </style>

@@ -87,9 +87,6 @@
                                 </td>
                                 <td>
                                     <div class="d-flex align-items-center">
-                                        <div class="bg-primary bg-opacity-10 rounded-2 p-2 me-3">
-                                            <i class="bi bi-cup-straw text-primary" style="font-size: 1.25rem;"></i>
-                                        </div>
                                         <div>
                                             <strong class="d-block">{{ $item->name }}</strong>
                                             <small class="text-muted">
