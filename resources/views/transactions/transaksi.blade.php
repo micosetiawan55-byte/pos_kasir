@@ -3,109 +3,176 @@
 @section('title', 'Transaksi Hari Ini')
 
 @section('content')
-<div class="row">
-    <div class="col-md-12">
-        <div class="card">
-            <div class="card-header bg-primary text-white">
-                <h5 class="mb-0">
-                    <i class="bi bi-calendar3 me-2"></i>Transaksi Hari Ini
-                    <small class="ms-2">(09 December 2025)</small>
-                </h5>
+<div class="container-fluid px-4">
+    <div class="row mb-4">
+        <div class="col-md-12">
+            <div class="d-flex justify-content-between align-items-center mb-4">
+                <div>
+                    <h2 class="mb-1 fw-bold text-primary">
+                        <i class="bi bi-calendar-check me-2"></i>Transaksi Hari Ini
+                    </h2>
+                    <p class="text-muted mb-0">
+                        <i class="bi bi-clock-history me-1"></i>09 December 2025 • 
+                        <span class="badge bg-info bg-opacity-10 text-info border border-info">Real-time Update</span>
+                    </p>
+                </div>
+                <div>
+                    <button class="btn btn-outline-primary me-2" id="refreshBtn">
+                        <i class="bi bi-arrow-clockwise me-1"></i>Refresh
+                    </button>
+                </div>
             </div>
+        </div>
+    </div>
 
-            <div class="card-body">
-                <!-- Today's Summary -->
-                <div class="row mb-4">
-                    <div class="col-md-4 mb-3">
-                        <div class="card border-success">
-                            <div class="card-body">
-                                <div class="d-flex justify-content-between">
-                                    <div>
-                                        <h6 class="text-muted">Transaksi Hari Ini</h6>
-                                        <h2 class="mb-0" id="todayCount">5</h2>
-                                    </div>
-                                    <div class="align-self-center">
-                                        <i class="bi bi-receipt" style="font-size: 2.5rem; color: #198754;"></i>
-                                    </div>
-                                </div>
-                                <small class="text-muted">
-                                    <i class="bi bi-clock me-1"></i>Shift: 
-                                    <span id="currentShift">Pagi (08-16)</span>
-                                </small>
+    <!-- Summary Cards -->
+    <div class="row mb-4">
+        <div class="col-xl-3 col-md-6 mb-4">
+            <div class="card border-start border-4 border-success shadow-sm h-100">
+                <div class="card-body">
+                    <div class="row no-gutters align-items-center">
+                        <div class="col me-2">
+                            <div class="text-xs fw-bold text-success text-uppercase mb-1">
+                                Transaksi Hari Ini
                             </div>
-                        </div>
-                    </div>
-                    
-                    <div class="col-md-4 mb-3">
-                        <div class="card border-primary">
-                            <div class="card-body">
-                                <div class="d-flex justify-content-between">
-                                    <div>
-                                        <h6 class="text-muted">Total Pendapatan</h6>
-                                        <h2 class="mb-0" id="todayRevenue">Rp 560.174</h2>
-                                    </div>
-                                    <div class="align-self-center">
-                                        <i class="bi bi-cash-coin" style="font-size: 2.5rem; color: #0d6efd;"></i>
-                                    </div>
-                                </div>
-                                <small class="text-muted">
+                            <div class="h5 mb-0 fw-bold" id="todayCount">5</div>
+                            <div class="mt-2">
+                                <span class="text-muted small">
                                     <i class="bi bi-clock me-1"></i>
-                                    Update terakhir: <span id="lastUpdate">14:53</span>
-                                </small>
+                                    <span id="currentShift">Shift: Pagi (08:00-16:00)</span>
+                                </span>
                             </div>
                         </div>
-                    </div>
-                    
-                    <div class="col-md-4 mb-3">
-                        <div class="card border-warning">
-                            <div class="card-body">
-                                <div class="d-flex justify-content-between">
-                                    <div>
-                                        <h6 class="text-muted">Produk Terjual</h6>
-                                        <h2 class="mb-0" id="productsSold">50</h2>
-                                    </div>
-                                    <div class="align-self-center">
-                                        <i class="bi bi-cart-check" style="font-size: 2.5rem; color: #ffc107;"></i>
-                                    </div>
-                                </div>
-                                <small class="text-muted">
-                                    <i class="bi bi-person me-1"></i>Kasir: 
-                                    <span id="cashierName">Kasir</span>
-                                </small>
-                            </div>
+                        <div class="col-auto">
+                            <i class="bi bi-receipt-cutoff text-success opacity-25" style="font-size: 3rem;"></i>
                         </div>
                     </div>
                 </div>
+            </div>
+        </div>
 
-                <!-- Aksi Laporan Section -->
-                <div class="card mb-4 border-0 shadow-sm">
-                    <div class="card-body">
-                        <h5 class="mb-4">
-                            <i class="bi bi-gear me-2"></i>Aksi Laporan
-                        </h5>
-                        <div class="row">
-                            <div class="col-md-6 mb-3">
-                                <div class="card h-100 border">
-                                    <div class="card-body text-center">
-                                        <i class="bi bi-eye text-primary" style="font-size: 2.5rem; margin-bottom: 15px;"></i>
-                                        <h5 class="mb-2">Cek Laporan</h5>
-                                        <p class="text-muted small mb-3">Lihat detail transaksi hari ini</p>
-                                        <button class="btn btn-primary btn-lg w-100" id="viewReportBtn">
-                                            <i class="bi bi-eye me-2"></i>Cek Laporan
-                                        </button>
+        <div class="col-xl-3 col-md-6 mb-4">
+            <div class="card border-start border-4 border-primary shadow-sm h-100">
+                <div class="card-body">
+                    <div class="row no-gutters align-items-center">
+                        <div class="col me-2">
+                            <div class="text-xs fw-bold text-primary text-uppercase mb-1">
+                                Total Pendapatan
+                            </div>
+                            <div class="h5 mb-0 fw-bold text-primary" id="todayRevenue">Rp 560.174</div>
+                            <div class="mt-2">
+                                <span class="text-muted small">
+                                    <i class="bi bi-currency-dollar me-1"></i>
+                                    <span id="averageTransaction">Rp 112.034,8 / transaksi</span>
+                                </span>
+                            </div>
+                        </div>
+                        <div class="col-auto">
+                            <i class="bi bi-cash-stack text-primary opacity-25" style="font-size: 3rem;"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-xl-3 col-md-6 mb-4">
+            <div class="card border-start border-4 border-warning shadow-sm h-100">
+                <div class="card-body">
+                    <div class="row no-gutters align-items-center">
+                        <div class="col me-2">
+                            <div class="text-xs fw-bold text-warning text-uppercase mb-1">
+                                Produk Terjual
+                            </div>
+                            <div class="h5 mb-0 fw-bold" id="productsSold">50</div>
+                            <div class="mt-2">
+                                <span class="text-muted small">
+                                    <i class="bi bi-person-badge me-1"></i>
+                                    <span id="cashierName">Kasir: Kasir</span>
+                                </span>
+                            </div>
+                        </div>
+                        <div class="col-auto">
+                            <i class="bi bi-box-seam text-warning opacity-25" style="font-size: 3rem;"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-xl-3 col-md-6 mb-4">
+            <div class="card border-start border-4 border-info shadow-sm h-100">
+                <div class="card-body">
+                    <div class="row no-gutters align-items-center">
+                        <div class="col me-2">
+                            <div class="text-xs fw-bold text-info text-uppercase mb-1">
+                                Status Aktivitas
+                            </div>
+                            <div class="h5 mb-0 fw-bold">
+                                <span class="badge bg-success" id="shiftStatus">Aktif</span>
+                            </div>
+                            <div class="mt-2">
+                                <span class="text-muted small">
+                                    <i class="bi bi-clock-history me-1"></i>
+                                    Update: <span id="lastUpdate">14:53</span>
+                                </span>
+                            </div>
+                        </div>
+                        <div class="col-auto">
+                            <i class="bi bi-activity text-info opacity-25" style="font-size: 3rem;"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Action Cards -->
+    <div class="row mb-4">
+        <div class="col-md-12">
+            <div class="card shadow-sm border-0">
+                <div class="card-body p-4">
+                    <h5 class="card-title mb-4 fw-bold">
+                        <i class="bi bi-lightning-charge-fill text-primary me-2"></i>Aksi Cepat
+                    </h5>
+                    <div class="row">
+                        <div class="col-md-6 mb-3">
+                            <div class="card border-0 bg-gradient-primary-hover h-100 shadow-sm">
+                                <div class="card-body p-4">
+                                    <div class="d-flex align-items-center">
+                                        <div class="flex-shrink-0">
+                                            <div class="bg-primary bg-opacity-10 p-3 rounded-3">
+                                                <i class="bi bi-eye-fill text-primary" style="font-size: 1.75rem;"></i>
+                                            </div>
+                                        </div>
+                                        <div class="flex-grow-1 ms-3">
+                                            <h6 class="fw-bold mb-1">Cek Laporan Detail</h6>
+                                            <p class="text-muted small mb-0">Analisis lengkap transaksi hari ini</p>
+                                        </div>
                                     </div>
+                                    <button class="btn btn-primary w-100 mt-3 fw-semibold" id="viewReportBtn">
+                                        <i class="bi bi-eye me-2"></i>Lihat Laporan
+                                    </button>
                                 </div>
                             </div>
-                            <div class="col-md-6 mb-3">
-                                <div class="card h-100 border">
-                                    <div class="card-body text-center">
-                                        <i class="bi bi-download text-success" style="font-size: 2.5rem; margin-bottom: 15px;"></i>
-                                        <h5 class="mb-2">Export Data</h5>
-                                        <p class="text-muted small mb-3">Export data transaksi ke CSV/Excel</p>
-                                        <button class="btn btn-success btn-lg w-100" id="exportDataBtn">
-                                            <i class="bi bi-download me-2"></i>Export Data
-                                        </button>
+                        </div>
+
+                        <div class="col-md-6 mb-3">
+                            <div class="card border-0 bg-gradient-success-hover h-100 shadow-sm">
+                                <div class="card-body p-4">
+                                    <div class="d-flex align-items-center">
+                                        <div class="flex-shrink-0">
+                                            <div class="bg-success bg-opacity-10 p-3 rounded-3">
+                                                <i class="bi bi-download text-success" style="font-size: 1.75rem;"></i>
+                                            </div>
+                                        </div>
+                                        <div class="flex-grow-1 ms-3">
+                                            <h6 class="fw-bold mb-1">Export Data</h6>
+                                            <p class="text-muted small mb-0">Download data dalam format Excel/CSV</p>
+                                        </div>
                                     </div>
+                                    <button class="btn btn-success w-100 mt-3 fw-semibold" id="exportDataBtn">
+                                        <i class="bi bi-download me-2"></i>Export Data
+                                    </button>
                                 </div>
                             </div>
                         </div>
@@ -114,150 +181,229 @@
             </div>
         </div>
     </div>
-</div>
 
-<!-- Transactions Table -->
-<div class="row mt-4">
-    <div class="col-md-12">
-        <div class="card">
-            <div class="card-header bg-light">
-                <h5 class="mb-0">
-                    <i class="bi bi-arrow-down-circle me-2"></i>Tracker Transaksi
-                </h5>
-            </div>
-            <div class="card-body">
-                <!-- Quick Stats -->
-                <div class="row mb-4">
-                    <div class="col-md-3">
-                        <div class="alert alert-light py-2">
-                            <small class="text-muted">Transaksi Pertama</small>
-                            <div class="fw-bold" id="firstTransaction">10:53</div>
-                        </div>
-                    </div>
-                    <div class="col-md-3">
-                        <div class="alert alert-light py-2">
-                            <small class="text-muted">Transaksi Terakhir</small>
-                            <div class="fw-bold" id="lastTransaction">14:53</div>
-                        </div>
-                    </div>
-                    <div class="col-md-3">
-                        <div class="alert alert-light py-2">
-                            <small class="text-muted">Rata-rata/Transaksi</small>
-                            <div class="fw-bold" id="averageTransaction">Rp 112.034,8</div>
-                        </div>
-                    </div>
-                    <div class="col-md-3">
-                        <div class="alert alert-light py-2">
-                            <small class="text-muted">Status</small>
-                            <div>
-                                <span class="badge bg-success" id="shiftStatus">Aktif</span>
-                            </div>
+    <!-- Transactions Table -->
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card shadow-sm border-0">
+                <div class="card-header bg-white border-0 py-3">
+                    <div class="d-flex justify-content-between align-items-center">
+                        <h5 class="mb-0 fw-bold">
+                            <i class="bi bi-list-check me-2 text-primary"></i>Daftar Transaksi
+                        </h5>
+                        <div class="text-muted small">
+                            <span id="firstTransaction">10:53</span> - 
+                            <span id="lastTransaction">14:53</span>
                         </div>
                     </div>
                 </div>
+                <div class="card-body p-0">
+                    <div class="table-responsive">
+                        <table class="table table-hover align-middle mb-0">
+                            <thead class="table-light">
+                                <tr>
+                                    <th class="ps-4 py-3 fw-semibold text-secondary">#</th>
+                                    <th class="py-3 fw-semibold text-secondary">WAKTU</th>
+                                    <th class="py-3 fw-semibold text-secondary">INVOICE</th>
+                                    <th class="py-3 fw-semibold text-secondary">ITEM</th>
+                                    <th class="py-3 fw-semibold text-secondary">TOTAL</th>
+                                    <th class="py-3 fw-semibold text-secondary">METODE</th>
+                                    <th class="text-end pe-4 py-3 fw-semibold text-secondary">AKSI</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr class="border-bottom border-light">
+                                    <td class="ps-4">
+                                        <span class="badge bg-primary bg-opacity-10 text-primary rounded-pill px-3 py-1 fw-semibold">1</span>
+                                    </td>
+                                    <td>
+                                        <div class="d-flex align-items-center">
+                                            <div class="time-indicator time-evening me-3"></div>
+                                            <div>
+                                                <div class="fw-semibold">14:53</div>
+                                                <small class="text-muted">Baru saja</small>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="fw-semibold text-primary">INV-2025-009001</div>
+                                    </td>
+                                    <td>
+                                        <span class="badge bg-secondary bg-opacity-10 text-secondary border border-secondary">
+                                            <i class="bi bi-box me-1"></i>10 item
+                                        </span>
+                                    </td>
+                                    <td>
+                                        <div class="fw-bold">Rp 85.000</div>
+                                    </td>
+                                    <td>
+                                        <span class="badge bg-success bg-opacity-10 text-success border border-success px-3 py-1">
+                                            <i class="bi bi-cash me-1"></i>Tunai
+                                        </span>
+                                    </td>
+                                    <td class="text-end pe-4">
+                                        <button class="btn btn-sm btn-outline-primary rounded-3 px-3" 
+                                                onclick="showTransactionDetail(1)"
+                                                data-bs-toggle="tooltip" title="Lihat Detail">
+                                            <i class="bi bi-eye me-1"></i>Detail
+                                        </button>
+                                    </td>
+                                </tr>
 
-                <!-- Transactions List -->
-                <div class="table-responsive">
-                    <table class="table table-hover">
-                        <thead class="table-light">
-                            <tr>
-                                <th width="60">No</th>
-                                <th>Waktu</th>
-                                <th>Invoice</th>
-                                <th>Items</th>
-                                <th>Total</th>
-                                <th>Metode</th>
-                                <th width="100">Aksi</th>
-                            </tr>
-                        </thead>
-                        <tbody id="transactionsBody">
-                            <tr class="transaction-row">
-                                <td>1</td>
-                                <td>
-                                    <span class="time-badge time-evening">
-                                        <i class="bi bi-clock me-1"></i>14:53
-                                    </span>
-                                </td>
-                                <td><strong>INV-2025-009001</strong></td>
-                                <td><span class="badge bg-secondary">10 items</span></td>
-                                <td><strong>Rp 85.000</strong></td>
-                                <td><span class="badge bg-success">Tunai</span></td>
-                                <td>
-                                    <button class="btn btn-sm btn-outline-primary">
-                                        <i class="bi bi-eye"></i>
-                                    </button>
-                                </td>
-                            </tr>
-                            <tr class="transaction-row">
-                                <td>2</td>
-                                <td>
-                                    <span class="time-badge time-afternoon">
-                                        <i class="bi bi-clock me-1"></i>13:58
-                                    </span>
-                                </td>
-                                <td><strong>INV-2025-009102</strong></td>
-                                <td><span class="badge bg-secondary">10 items</span></td>
-                                <td><strong>Rp 78.799</strong></td>
-                                <td><span class="badge bg-success">Tunai</span></td>
-                                <td>
-                                    <button class="btn btn-sm btn-outline-primary">
-                                        <i class="bi bi-eye"></i>
-                                    </button>
-                                </td>
-                            </tr>
-                            <tr class="transaction-row">
-                                <td>3</td>
-                                <td>
-                                    <span class="time-badge time-afternoon">
-                                        <i class="bi bi-clock me-1"></i>12:19
-                                    </span>
-                                </td>
-                                <td><strong>INV-2025-009103</strong></td>
-                                <td><span class="badge bg-secondary">10 items</span></td>
-                                <td><strong>Rp 178.423</strong></td>
-                                <td><span class="badge bg-success">Tunai</span></td>
-                                <td>
-                                    <button class="btn btn-sm btn-outline-primary">
-                                        <i class="bi bi-eye"></i>
-                                    </button>
-                                </td>
-                            </tr>
-                            <tr class="transaction-row">
-                                <td>4</td>
-                                <td>
-                                    <span class="time-badge time-morning">
-                                        <i class="bi bi-clock me-1"></i>11:24
-                                    </span>
-                                </td>
-                                <td><strong>INV-2025-009104</strong></td>
-                                <td><span class="badge bg-secondary">10 items</span></td>
-                                <td><strong>Rp 47.514</strong></td>
-                                <td><span class="badge bg-success">Tunai</span></td>
-                                <td>
-                                    <button class="btn btn-sm btn-outline-primary">
-                                        <i class="bi bi-eye"></i>
-                                    </button>
-                                </td>
-                            </tr>
-                            <tr class="transaction-row">
-                                <td>5</td>
-                                <td>
-                                    <span class="time-badge time-morning">
-                                        <i class="bi bi-clock me-1"></i>10:53
-                                    </span>
-                                </td>
-                                <td><strong>INV-2025-009105</strong></td>
-                                <td><span class="badge bg-secondary">10 items</span></td>
-                                <td><strong>Rp 170.438</strong></td>
-                                <td><span class="badge bg-success">Tunai</span></td>
-                                <td>
-                                    <button class="btn btn-sm btn-outline-primary">
-                                        <i class="bi bi-eye"></i>
-                                    </button>
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table>
+                                <tr class="border-bottom border-light">
+                                    <td class="ps-4">
+                                        <span class="badge bg-primary bg-opacity-10 text-primary rounded-pill px-3 py-1 fw-semibold">2</span>
+                                    </td>
+                                    <td>
+                                        <div class="d-flex align-items-center">
+                                            <div class="time-indicator time-afternoon me-3"></div>
+                                            <div>
+                                                <div class="fw-semibold">13:58</div>
+                                                <small class="text-muted">1 jam lalu</small>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="fw-semibold text-primary">INV-2025-009102</div>
+                                    </td>
+                                    <td>
+                                        <span class="badge bg-secondary bg-opacity-10 text-secondary border border-secondary">
+                                            <i class="bi bi-box me-1"></i>10 item
+                                        </span>
+                                    </td>
+                                    <td>
+                                        <div class="fw-bold">Rp 78.799</div>
+                                    </td>
+                                    <td>
+                                        <span class="badge bg-success bg-opacity-10 text-success border border-success px-3 py-1">
+                                            <i class="bi bi-cash me-1"></i>Tunai
+                                        </span>
+                                    </td>
+                                    <td class="text-end pe-4">
+                                        <button class="btn btn-sm btn-outline-primary rounded-3 px-3"
+                                                onclick="showTransactionDetail(2)"
+                                                data-bs-toggle="tooltip" title="Lihat Detail">
+                                            <i class="bi bi-eye me-1"></i>Detail
+                                        </button>
+                                    </td>
+                                </tr>
+
+                                <tr class="border-bottom border-light">
+                                    <td class="ps-4">
+                                        <span class="badge bg-primary bg-opacity-10 text-primary rounded-pill px-3 py-1 fw-semibold">3</span>
+                                    </td>
+                                    <td>
+                                        <div class="d-flex align-items-center">
+                                            <div class="time-indicator time-afternoon me-3"></div>
+                                            <div>
+                                                <div class="fw-semibold">12:19</div>
+                                                <small class="text-muted">3 jam lalu</small>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="fw-semibold text-primary">INV-2025-009103</div>
+                                    </td>
+                                    <td>
+                                        <span class="badge bg-secondary bg-opacity-10 text-secondary border border-secondary">
+                                            <i class="bi bi-box me-1"></i>10 item
+                                        </span>
+                                    </td>
+                                    <td>
+                                        <div class="fw-bold">Rp 178.423</div>
+                                    </td>
+                                    <td>
+                                        <span class="badge bg-success bg-opacity-10 text-success border border-success px-3 py-1">
+                                            <i class="bi bi-cash me-1"></i>Tunai
+                                        </span>
+                                    </td>
+                                    <td class="text-end pe-4">
+                                        <button class="btn btn-sm btn-outline-primary rounded-3 px-3"
+                                                onclick="showTransactionDetail(3)"
+                                                data-bs-toggle="tooltip" title="Lihat Detail">
+                                            <i class="bi bi-eye me-1"></i>Detail
+                                        </button>
+                                    </td>
+                                </tr>
+
+                                <tr class="border-bottom border-light">
+                                    <td class="ps-4">
+                                        <span class="badge bg-primary bg-opacity-10 text-primary rounded-pill px-3 py-1 fw-semibold">4</span>
+                                    </td>
+                                    <td>
+                                        <div class="d-flex align-items-center">
+                                            <div class="time-indicator time-morning me-3"></div>
+                                            <div>
+                                                <div class="fw-semibold">11:24</div>
+                                                <small class="text-muted">4 jam lalu</small>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="fw-semibold text-primary">INV-2025-009104</div>
+                                    </td>
+                                    <td>
+                                        <span class="badge bg-secondary bg-opacity-10 text-secondary border border-secondary">
+                                            <i class="bi bi-box me-1"></i>10 item
+                                        </span>
+                                    </td>
+                                    <td>
+                                        <div class="fw-bold">Rp 47.514</div>
+                                    </td>
+                                    <td>
+                                        <span class="badge bg-success bg-opacity-10 text-success border border-success px-3 py-1">
+                                            <i class="bi bi-cash me-1"></i>Tunai
+                                        </span>
+                                    </td>
+                                    <td class="text-end pe-4">
+                                        <button class="btn btn-sm btn-outline-primary rounded-3 px-3"
+                                                onclick="showTransactionDetail(4)"
+                                                data-bs-toggle="tooltip" title="Lihat Detail">
+                                            <i class="bi bi-eye me-1"></i>Detail
+                                        </button>
+                                    </td>
+                                </tr>
+
+                                <tr>
+                                    <td class="ps-4">
+                                        <span class="badge bg-primary bg-opacity-10 text-primary rounded-pill px-3 py-1 fw-semibold">5</span>
+                                    </td>
+                                    <td>
+                                        <div class="d-flex align-items-center">
+                                            <div class="time-indicator time-morning me-3"></div>
+                                            <div>
+                                                <div class="fw-semibold">10:53</div>
+                                                <small class="text-muted">4 jam lalu</small>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="fw-semibold text-primary">INV-2025-009105</div>
+                                    </td>
+                                    <td>
+                                        <span class="badge bg-secondary bg-opacity-10 text-secondary border border-secondary">
+                                            <i class="bi bi-box me-1"></i>10 item
+                                        </span>
+                                    </td>
+                                    <td>
+                                        <div class="fw-bold">Rp 170.438</div>
+                                    </td>
+                                    <td>
+                                        <span class="badge bg-success bg-opacity-10 text-success border border-success px-3 py-1">
+                                            <i class="bi bi-cash me-1"></i>Tunai
+                                        </span>
+                                    </td>
+                                    <td class="text-end pe-4">
+                                        <button class="btn btn-sm btn-outline-primary rounded-3 px-3"
+                                                onclick="showTransactionDetail(5)"
+                                                data-bs-toggle="tooltip" title="Lihat Detail">
+                                            <i class="bi bi-eye me-1"></i>Detail
+                                        </button>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
             </div>
         </div>
@@ -266,10 +412,10 @@
 
 <!-- Modal for Transaction Details -->
 <div class="modal fade" id="transactionDetailModal" tabindex="-1">
-    <div class="modal-dialog">
+    <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title">
+                <h5 class="modal-title fw-bold">
                     <i class="bi bi-receipt me-2"></i>Detail Transaksi
                 </h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
@@ -277,69 +423,87 @@
             <div class="modal-body" id="transactionDetailContent">
                 <!-- Detail akan diisi via JavaScript -->
             </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Tutup</button>
-                <button type="button" class="btn btn-primary" onclick="printReceipt()">
-                    <i class="bi bi-printer me-2"></i>Cetak Ulang
-                </button>
-            </div>
         </div>
     </div>
 </div>
 
 <style>
-    /* Simple styling for today's transactions */
-    .transaction-row {
-        transition: background-color 0.2s;
+    /* Styling untuk halaman transaksi */
+    .border-start {
+        border-left-width: 4px !important;
     }
     
-    .transaction-row:hover {
-        background-color: rgba(67, 97, 238, 0.05);
-    }
-    
-    .time-badge {
-        font-size: 0.85rem;
-        padding: 4px 10px;
-        border-radius: 20px;
+    .time-indicator {
+        width: 8px;
+        height: 32px;
+        border-radius: 4px;
     }
     
     .time-morning {
-        background-color: #e3f2fd;
-        color: #1565c0;
+        background: linear-gradient(180deg, #3498db, #2ecc71);
     }
     
     .time-afternoon {
-        background-color: #fff3e0;
-        color: #f57c00;
+        background: linear-gradient(180deg, #f39c12, #e74c3c);
     }
     
     .time-evening {
-        background-color: #f3e5f5;
-        color: #7b1fa2;
+        background: linear-gradient(180deg, #9b59b6, #34495e);
     }
     
-    /* Aksi Laporan Card Styling */
-    .card.border {
-        border-color: #dee2e6 !important;
-        transition: transform 0.2s, box-shadow 0.2s;
+    /* Hover effects */
+    tr:hover {
+        background-color: rgba(67, 97, 238, 0.03) !important;
     }
     
-    .card.border:hover {
-        transform: translateY(-5px);
-        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+    .bg-gradient-primary-hover:hover {
+        background: linear-gradient(135deg, rgba(67, 97, 238, 0.05), rgba(67, 97, 238, 0.1));
     }
     
-    /* Button styling */
-    .btn-lg {
-        padding: 0.75rem 1.5rem;
-        font-size: 1rem;
+    .bg-gradient-success-hover:hover {
+        background: linear-gradient(135deg, rgba(40, 167, 69, 0.05), rgba(40, 167, 69, 0.1));
+    }
+    
+    /* Card styling */
+    .card {
+        border-radius: 12px;
+        overflow: hidden;
+    }
+    
+    .table th {
+        border-top: none;
+        border-bottom: 2px solid #f1f3f5;
+    }
+    
+    .badge {
         font-weight: 500;
     }
     
-    /* Card header styling */
-    .card-header.bg-light {
-        background-color: #f8f9fa !important;
-        border-bottom: 1px solid #dee2e6;
+    /* Button styling */
+    .btn-outline-primary {
+        border-width: 1.5px;
+    }
+    
+    .btn-outline-primary:hover {
+        background-color: #4361ee;
+        color: white;
+        transform: translateY(-1px);
+        transition: all 0.2s ease;
+    }
+    
+    /* Custom scrollbar */
+    .table-responsive::-webkit-scrollbar {
+        height: 6px;
+    }
+    
+    .table-responsive::-webkit-scrollbar-track {
+        background: #f1f1f1;
+        border-radius: 3px;
+    }
+    
+    .table-responsive::-webkit-scrollbar-thumb {
+        background: #c1c1c1;
+        border-radius: 3px;
     }
 </style>
 @endsection
@@ -377,50 +541,78 @@
             const subtotal = item.qty * item.price;
             itemsTotal += subtotal;
             itemsHtml += `
-                <div class="d-flex justify-content-between mb-2">
-                    <div>
-                        <span class="fw-bold">${item.name}</span>
-                        <br>
-                        <small class="text-muted">${item.qty} x ${formatCurrency(item.price)}</small>
-                    </div>
-                    <div class="fw-bold">
-                        ${formatCurrency(subtotal)}
-                    </div>
-                </div>
+                <tr>
+                    <td>${item.name}</td>
+                    <td class="text-center">${item.qty}</td>
+                    <td class="text-end">${formatCurrency(item.price)}</td>
+                    <td class="text-end fw-bold">${formatCurrency(subtotal)}</td>
+                </tr>
             `;
         });
         
         const detailHtml = `
-            <div class="mb-3">
-                <div class="d-flex justify-content-between align-items-center mb-2">
-                    <h6 class="mb-0">${transaction.invoice}</h6>
-                    <span class="badge bg-success">
-                        Selesai
-                    </span>
+            <div class="p-3">
+                <div class="row mb-4">
+                    <div class="col-md-6">
+                        <div class="card border-0 bg-light">
+                            <div class="card-body">
+                                <h6 class="text-muted mb-2">INVOICE</h6>
+                                <h4 class="fw-bold text-primary">${transaction.invoice}</h4>
+                                <div class="d-flex align-items-center mt-3">
+                                    <span class="badge bg-success me-3">
+                                        <i class="bi bi-check-circle me-1"></i>Selesai
+                                    </span>
+                                    <span class="text-muted">
+                                        <i class="bi bi-clock me-1"></i>${transaction.time}
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="card border-0 bg-light">
+                            <div class="card-body">
+                                <h6 class="text-muted mb-2">PEMBAYARAN</h6>
+                                <h4 class="fw-bold">${formatCurrency(transaction.total)}</h4>
+                                <div class="mt-3">
+                                    <span class="badge bg-success bg-opacity-10 text-success border border-success px-3 py-2">
+                                        <i class="bi bi-cash me-1"></i>${transaction.method}
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-                <small class="text-muted">
-                    <i class="bi bi-clock me-1"></i>${transaction.time} • 
-                    <i class="bi bi-cash-coin me-1"></i>${transaction.method}
-                </small>
-            </div>
-            
-            <hr>
-            
-            <h6 class="mb-3">Items:</h6>
-            ${itemsHtml}
-            
-            <hr>
-            
-            <div class="d-flex justify-content-between fw-bold fs-5">
-                <span>Total:</span>
-                <span class="text-primary">${formatCurrency(transaction.total)}</span>
-            </div>
-            
-            <div class="mt-3">
-                <small class="text-muted">
-                    <i class="bi bi-info-circle me-1"></i>
-                    Transaksi ini tercatat dalam sistem hari ini
-                </small>
+                
+                <h6 class="fw-bold mb-3">Detail Items</h6>
+                <div class="table-responsive">
+                    <table class="table table-bordered">
+                        <thead class="table-light">
+                            <tr>
+                                <th>Produk</th>
+                                <th width="100" class="text-center">Qty</th>
+                                <th width="150" class="text-end">Harga</th>
+                                <th width="150" class="text-end">Subtotal</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            ${itemsHtml}
+                            <tr class="table-light">
+                                <td colspan="3" class="text-end fw-bold">Total</td>
+                                <td class="text-end fw-bold text-primary">${formatCurrency(transaction.total)}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                
+                <div class="d-flex justify-content-end mt-4">
+                    <button type="button" class="btn btn-outline-secondary me-2" data-bs-dismiss="modal">
+                        <i class="bi bi-x-circle me-1"></i>Tutup
+                    </button>
+                    <button type="button" class="btn btn-primary" onclick="printReceipt()">
+                        <i class="bi bi-printer me-1"></i>Cetak Ulang
+                    </button>
+                </div>
             </div>
         `;
         
@@ -489,30 +681,43 @@
             btn.innerHTML = originalText;
             btn.disabled = false;
             
-            // Redirect to detailed report page
-            alert('Membuka halaman laporan detail...');
-            // window.location.href = '/reports/detail';
-            
             // Show summary in modal
             const summaryHtml = `
-                <div class="text-center p-4">
-                    <i class="bi bi-file-earmark-text text-primary" style="font-size: 3rem; margin-bottom: 20px;"></i>
-                    <h4 class="mb-3">Ringkasan Laporan Hari Ini</h4>
-                    <div class="row text-start">
-                        <div class="col-6">
-                            <small class="text-muted">Total Transaksi</small>
-                            <h5 class="fw-bold">5 transaksi</h5>
+                <div class="p-4">
+                    <div class="text-center mb-4">
+                        <i class="bi bi-file-earmark-text text-primary" style="font-size: 3rem; margin-bottom: 20px;"></i>
+                        <h4 class="mb-3 fw-bold">Ringkasan Laporan Hari Ini</h4>
+                    </div>
+                    <div class="row mb-4">
+                        <div class="col-md-6">
+                            <div class="card border-0 bg-light">
+                                <div class="card-body text-center py-4">
+                                    <div class="text-muted mb-2">Total Transaksi</div>
+                                    <h2 class="fw-bold text-primary">5 transaksi</h2>
+                                </div>
+                            </div>
                         </div>
-                        <div class="col-6">
-                            <small class="text-muted">Total Pendapatan</small>
-                            <h5 class="fw-bold">Rp 560.174</h5>
+                        <div class="col-md-6">
+                            <div class="card border-0 bg-light">
+                                <div class="card-body text-center py-4">
+                                    <div class="text-muted mb-2">Total Pendapatan</div>
+                                    <h2 class="fw-bold text-success">Rp 560.174</h2>
+                                </div>
+                            </div>
                         </div>
                     </div>
-                    <hr>
-                    <small class="text-muted">
-                        <i class="bi bi-info-circle me-1"></i>
-                        Laporan ini mencakup semua transaksi dari shift Pagi (08-16)
-                    </small>
+                    <div class="alert alert-info">
+                        <i class="bi bi-info-circle me-2"></i>
+                        Laporan ini mencakup semua transaksi dari shift Pagi (08:00-16:00)
+                    </div>
+                    <div class="d-flex justify-content-end mt-4">
+                        <button type="button" class="btn btn-outline-secondary me-2" data-bs-dismiss="modal">
+                            <i class="bi bi-x-circle me-1"></i>Batal
+                        </button>
+                        <button type="button" class="btn btn-primary" onclick="printReport()">
+                            <i class="bi bi-printer me-1"></i>Cetak Ulang
+                        </button>
+                    </div>
                 </div>
             `;
             
@@ -527,22 +732,41 @@
         }, 1000);
     });
     
-    // Add click event to all eye buttons
-    document.addEventListener('DOMContentLoaded', function() {
-        const eyeButtons = document.querySelectorAll('.btn-outline-primary');
-        eyeButtons.forEach((button, index) => {
-            button.addEventListener('click', function() {
-                showTransactionDetail(index + 1);
-            });
-        });
+    // Print report function
+    function printReport() {
+        alert('Fitur cetak laporan akan membuka jendela print...');
+        window.print();
+    }
+    
+    // Refresh button
+    document.getElementById('refreshBtn').addEventListener('click', function() {
+        const btn = this;
+        btn.innerHTML = '<span class="spinner-border spinner-border-sm me-2"></span>Refreshing...';
+        btn.disabled = true;
         
-        // Get cashier name from localStorage
-        const rememberedUser = localStorage.getItem('rememberedUser');
-        if (rememberedUser) {
-            document.getElementById('cashierName').textContent = rememberedUser;
-        } else {
-            document.getElementById('cashierName').textContent = 'Kasir';
-        }
+        setTimeout(() => {
+            btn.innerHTML = '<i class="bi bi-arrow-clockwise me-1"></i>Refresh';
+            btn.disabled = false;
+            
+            // Show success alert
+            const alertDiv = document.createElement('div');
+            alertDiv.className = 'alert alert-success alert-dismissible fade show mt-3';
+            alertDiv.innerHTML = `
+                <i class="bi bi-check-circle me-2"></i>
+                Data berhasil direfresh!
+                <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+            `;
+            
+            document.querySelector('.container-fluid').prepend(alertDiv);
+        }, 1500);
+    });
+    
+    // Initialize tooltips
+    document.addEventListener('DOMContentLoaded', function() {
+        const tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'));
+        const tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
+            return new bootstrap.Tooltip(tooltipTriggerEl);
+        });
     });
 </script>
 @endsection
